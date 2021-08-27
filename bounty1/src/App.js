@@ -109,6 +109,8 @@ class LogInWithAlbedo extends Component {
           >
             Login With <Image style={{ width: "55px" }} src={albedologo} />
           </Button>
+        </div>
+        <div class="form-signin">
           <p>Public-Key: {value}</p>
         </div>
         <div class="form-signin">
@@ -122,12 +124,22 @@ class LogInWithAlbedo extends Component {
             <p>When there is no currency behind the balance, its native XLM.</p>
           </ul>
         </div>
-        <ul>
-          <p>Account was created at:</p>
-          {account.map((item) => (
-            <li key={item.created_at}>{item.created_at}</li>
-          ))}
-        </ul>
+        <div class="form-signin">
+          <ul>
+            <p>Account was created at:</p>
+            {account.map((item) => (
+              <li key={item.created_at}>{item.created_at}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="form-signin">
+          <ul>
+            <p>Account was created by:</p>
+            {account.map((item) => (
+              <li key={item.source_account}>{item.source_account}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
