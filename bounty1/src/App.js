@@ -7,6 +7,7 @@ import "./bootstrap.min.css";
 import "./default.css";
 
 class LogInWithAlbedo extends Component {
+  //helping constructor, so that react won't forget the values
   constructor(props) {
     super(props);
     this.state = {
@@ -20,9 +21,11 @@ class LogInWithAlbedo extends Component {
   }
 
   Albedo() {
+    //Albedo Button with API Call to get the Public-Key
     albedo.publicKey({}).then((res) => {
       const { intent, pubkey, signature, signed_message } = res;
-      //console.log({ intent, pubkey, signature, signed_message });
+      //console.log({ intent, pubkey, signature, signed_message }); --> for debugging
+      //API Call to get the balances
       this.setState((currentState) => {
         fetch("https://horizon.stellar.org/accounts/" + pubkey)
           .then((res) => res.json())
@@ -43,6 +46,7 @@ class LogInWithAlbedo extends Component {
               });
             }
           );
+          //another API Call to get the creating transaction
         fetch(
           "https://horizon.stellar.org/accounts/" +
             pubkey +
@@ -51,7 +55,7 @@ class LogInWithAlbedo extends Component {
           .then((res2) => res2.json())
           .then(
             (result2) => {
-              //console.log(result2);
+              //console.log(result2); --> for debugging
               this.setState({
                 isLoaded2: true,
                 account: result2._embedded.records,
@@ -67,6 +71,7 @@ class LogInWithAlbedo extends Component {
               });
             }
           );
+          //return the Public-Key to show it to the User
         return { value: pubkey };
       });
     });
@@ -75,12 +80,14 @@ class LogInWithAlbedo extends Component {
   render() {
     const { value, balances, account } = this.state;
     return (
+      //the actual html of the site
       <div class="text-center">
         <div class="form-signin">
           <Button
             style={{ width: "207px", height: "40px" }}
             variant="contained"
             color="default"
+            //the API Calls get executed on click
             onClick={this.Albedo.bind(this)}
           >
             Login With <Image style={{ width: "55px" }} src={albedologo} />
