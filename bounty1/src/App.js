@@ -46,7 +46,7 @@ class LogInWithAlbedo extends Component {
   Albedo() {
     albedo.publicKey({}).then((res) => {
       const { intent, pubkey, signature, signed_message } = res;
-      console.log({ intent, pubkey, signature, signed_message });
+      //console.log({ intent, pubkey, signature, signed_message });
       this.setState((currentState) => {
         fetch("https://horizon.stellar.org/accounts/" + pubkey)
           .then((res) => res.json())
@@ -75,7 +75,7 @@ class LogInWithAlbedo extends Component {
           .then((res2) => res2.json())
           .then(
             (result2) => {
-              console.log(result2);
+              //console.log(result2);
               this.setState({
                 isLoaded2: true,
                 account: result2._embedded.records
