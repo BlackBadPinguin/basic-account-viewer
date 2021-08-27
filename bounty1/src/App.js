@@ -19,30 +19,6 @@ class LogInWithAlbedo extends Component {
     };
   }
 
-  //componentDidMount() {
-  //fetch(
-  // "https://horizon.stellar.org/accounts/GAYOLLLUIZE4DZMBB2ZBKGBUBZLIOYU6XFLW37GBP2VZD3ABNXCW4BVA"
-  //)
-  // .then((res) => res.json())
-  // .then(
-  //  (result) => {
-  //   this.setState({
-  //     isLoaded: true,
-  //    balances: result.balances
-  //  });
-  // },
-  // Note: it's important to handle errors here
-  // instead of a catch() block so that we don't swallow
-  // exceptions from actual bugs in components.
-  //(error) => {
-  //  this.setState({
-  //    isLoaded: true,
-  //    error
-  //   });
-  //   }
-  // );
-  //}
-
   Albedo() {
     albedo.publicKey({}).then((res) => {
       const { intent, pubkey, signature, signed_message } = res;
