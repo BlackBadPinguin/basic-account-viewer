@@ -1,4 +1,4 @@
-To see the Website you can go on https://ntqv7.csb.app/ or you can, in the project directory, run:
+To see the Project you can go to https://ntqv7.csb.app/ or you can, in the project directory, run:
 
 ### `npm start`
 
@@ -34,8 +34,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Libraries that where used
-[React](https://reactjs.org/)
-[Albedo](https://albedo.link/playground)
+[React](https://reactjs.org/)\
+[Albedo](https://albedo.link/playground)\
 [Bootstrap4](https://getbootstrap.com/)
 
 
