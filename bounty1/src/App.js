@@ -3,6 +3,8 @@ import { Button } from "@material-ui/core";
 import { Image } from "react-bootstrap";
 import albedo from "@albedo-link/intent/lib/albedo.intent";
 import albedologo from "./albedo.png";
+import "./bootstrap.min.css";
+import "./default.css";
 
 class LogInWithAlbedo extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class LogInWithAlbedo extends Component {
       isLoaded: false,
       isLoaded2: false,
       balances: [],
-      account: [],
+      account: []
     };
   }
 
@@ -52,7 +54,7 @@ class LogInWithAlbedo extends Component {
             (result) => {
               this.setState({
                 isLoaded: true,
-                balances: result.balances,
+                balances: result.balances
               });
             },
             // Note: it's important to handle errors here
@@ -61,7 +63,7 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded: true,
-                error,
+                error
               });
             }
           );
@@ -76,7 +78,7 @@ class LogInWithAlbedo extends Component {
               console.log(result2);
               this.setState({
                 isLoaded2: true,
-                account: result2._embedded.records,
+                account: result2._embedded.records
               });
             },
             // Note: it's important to handle errors here
@@ -85,7 +87,7 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded2: true,
-                error,
+                error
               });
             }
           );
@@ -97,8 +99,8 @@ class LogInWithAlbedo extends Component {
   render() {
     const { value, balances, account } = this.state;
     return (
-      <div>
-        <div>
+      <div class="text-center">
+        <div class="form-signin">
           <Button
             style={{ width: "207px", height: "40px" }}
             variant="contained"
@@ -107,19 +109,19 @@ class LogInWithAlbedo extends Component {
           >
             Login With <Image style={{ width: "55px" }} src={albedologo} />
           </Button>
-          <div>Public-Key: {value}</div>
+          <p>Public-Key: {value}</p>
         </div>
-
-        <ul>
-          <p>Balances:</p>
-          {balances.map((item) => (
-            <li key={item.asset_code}>
-              {item.balance} {item.asset_code}
-            </li>
-          ))}
-          <p>When there is no currency behind the balance, its native XLM.</p>
-        </ul>
-
+        <div class="form-signin">
+          <ul>
+            <p>Balances:</p>
+            {balances.map((item) => (
+              <li key={item.asset_code}>
+                {item.balance} {item.asset_code}
+              </li>
+            ))}
+            <p>When there is no currency behind the balance, its native XLM.</p>
+          </ul>
+        </div>
         <ul>
           <p>Account was created at:</p>
           {account.map((item) => (
