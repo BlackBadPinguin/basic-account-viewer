@@ -15,7 +15,7 @@ class LogInWithAlbedo extends Component {
       isLoaded: false,
       isLoaded2: false,
       balances: [],
-      account: []
+      account: [],
     };
   }
 
@@ -54,7 +54,7 @@ class LogInWithAlbedo extends Component {
             (result) => {
               this.setState({
                 isLoaded: true,
-                balances: result.balances
+                balances: result.balances,
               });
             },
             // Note: it's important to handle errors here
@@ -63,7 +63,7 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded: true,
-                error
+                error,
               });
             }
           );
@@ -78,7 +78,7 @@ class LogInWithAlbedo extends Component {
               //console.log(result2);
               this.setState({
                 isLoaded2: true,
-                account: result2._embedded.records
+                account: result2._embedded.records,
               });
             },
             // Note: it's important to handle errors here
@@ -87,7 +87,7 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded2: true,
-                error
+                error,
               });
             }
           );
