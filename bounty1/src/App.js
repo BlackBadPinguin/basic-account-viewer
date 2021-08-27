@@ -11,7 +11,9 @@ class LogInWithAlbedo extends Component {
       value: null,
       error: null,
       isLoaded: false,
-      balances: []
+      isLoaded2: false,
+      balances: [],
+      account: [],
     };
   }
 
@@ -50,7 +52,7 @@ class LogInWithAlbedo extends Component {
             (result) => {
               this.setState({
                 isLoaded: true,
-                balances: result.balances
+                balances: result.balances,
               });
             },
             // Note: it's important to handle errors here
@@ -59,7 +61,31 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded: true,
-                error
+                error,
+              });
+            }
+          );
+        fetch(
+          "https://horizon.stellar.org/accounts/" +
+            pubkey +
+            "/payments?cursor=&limit=1&order=asc"
+        )
+          .then((res2) => res2.json())
+          .then(
+            (result2) => {
+              console.log(result2);
+              this.setState({
+                isLoaded2: true,
+                account: result2._embedded.records,
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded2: true,
+                error,
               });
             }
           );
@@ -69,7 +95,7 @@ class LogInWithAlbedo extends Component {
   }
 
   render() {
-    const { value, balances } = this.state;
+    const { value, balances, account } = this.state;
     return (
       <div>
         <div>
@@ -83,15 +109,23 @@ class LogInWithAlbedo extends Component {
           </Button>
           <div>Public-Key: {value}</div>
         </div>
-        Balances:
+
         <ul>
+          <p>Balances:</p>
           {balances.map((item) => (
             <li key={item.asset_code}>
               {item.balance} {item.asset_code}
             </li>
           ))}
+          <p>When there is no currency behind the balance, its native XLM.</p>
         </ul>
-        When there is no currency behind the balance, its native XLM.
+
+        <ul>
+          <p>Account was created at:</p>
+          {account.map((item) => (
+            <li key={item.created_at}>{item.created_at}</li>
+          ))}
+        </ul>
       </div>
     );
   }
