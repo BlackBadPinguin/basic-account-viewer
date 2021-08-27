@@ -26,6 +26,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Libraries that where used
 [React](https://reactjs.org/)\
 [Albedo](https://albedo.link/playground)\
-[Bootstrap4](https://getbootstrap.com/)
+[Bootstrap4](https://getbootstrap.com/)\
+[react-gh-pages](https://github.com/gitname/react-gh-pages)
 
 
