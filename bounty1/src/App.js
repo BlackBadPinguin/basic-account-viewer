@@ -27,9 +27,7 @@ class LogInWithAlbedo extends Component {
       //console.log({ intent, pubkey, signature, signed_message }); --> for debugging
       //API Call to get the balances
       this.setState((currentState) => {
-        fetch(
-          "https://horizon.stellar.org/accounts/GC6UZ37GVBIVTBTJ6ITYHERG26G36JBPM4I7UZDYMLJIFDEC5OPK4UYM"
-        )
+        fetch("https://horizon.stellar.org/accounts/" + pubkey)
           .then((res) => res.json())
           .then(
             (result) => {
