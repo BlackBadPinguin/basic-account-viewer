@@ -16,7 +16,7 @@ class LogInWithAlbedo extends Component {
       isLoaded: false,
       isLoaded2: false,
       balances: [],
-      account: [],
+      account: []
     };
   }
 
@@ -27,13 +27,15 @@ class LogInWithAlbedo extends Component {
       //console.log({ intent, pubkey, signature, signed_message }); --> for debugging
       //API Call to get the balances
       this.setState((currentState) => {
-        fetch("https://horizon.stellar.org/accounts/" + pubkey)
+        fetch(
+          "https://horizon.stellar.org/accounts/GC6UZ37GVBIVTBTJ6ITYHERG26G36JBPM4I7UZDYMLJIFDEC5OPK4UYM"
+        )
           .then((res) => res.json())
           .then(
             (result) => {
               this.setState({
                 isLoaded: true,
-                balances: result.balances,
+                balances: result.balances
               });
             },
             // Note: it's important to handle errors here
@@ -42,11 +44,11 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded: true,
-                error,
+                error
               });
             }
           );
-          //another API Call to get the creating transaction
+        //another API Call to get the creating transaction
         fetch(
           "https://horizon.stellar.org/accounts/" +
             pubkey +
@@ -58,7 +60,7 @@ class LogInWithAlbedo extends Component {
               //console.log(result2); --> for debugging
               this.setState({
                 isLoaded2: true,
-                account: result2._embedded.records,
+                account: result2._embedded.records
               });
             },
             // Note: it's important to handle errors here
@@ -67,11 +69,11 @@ class LogInWithAlbedo extends Component {
             (error) => {
               this.setState({
                 isLoaded2: true,
-                error,
+                error
               });
             }
           );
-          //return the Public-Key to show it to the User
+        //return the Public-Key to show it to the User
         return { value: pubkey };
       });
     });
@@ -79,50 +81,45 @@ class LogInWithAlbedo extends Component {
 
   render() {
     const { value, balances, account } = this.state;
+
     return (
       //the actual html of the site
-      <div class="text-center">
-        <div class="form-signin">
-          <Button
-            style={{ width: "207px", height: "40px" }}
-            variant="contained"
-            color="default"
-            //the API Calls get executed on click
-            onClick={this.Albedo.bind(this)}
-          >
-            Login With <Image style={{ width: "55px" }} src={albedologo} />
-          </Button>
-        </div>
-        <div class="form-signin">
-          <p>Public-Key: {value}</p>
-        </div>
-        <div class="form-signin">
-          <ul>
-            <p>Balances:</p>
-            {balances.map((item) => (
-              <li key={item.asset_code}>
-                {item.balance} {item.asset_code}
-              </li>
-            ))}
-            <p>When there is no currency behind the balance, its native XLM.</p>
-          </ul>
-        </div>
-        <div class="form-signin">
-          <ul>
-            <p>Account was created at:</p>
-            {account.map((item) => (
-              <li key={item.created_at}>{item.created_at}</li>
-            ))}
-          </ul>
-        </div>
-        <div class="form-signin">
-          <ul>
-            <p>Account was created by:</p>
-            {account.map((item) => (
-              <li key={item.source_account}>{item.source_account}</li>
-            ))}
-          </ul>
-        </div>
+      <div class="center">
+        <Button
+          style={{ width: "207px", height: "40px" }}
+          variant="contained"
+          color="default"
+          //the API Calls get executed on click
+          onClick={this.Albedo.bind(this)}
+        >
+          Login With <Image style={{ width: "55px" }} src={albedologo} />
+        </Button>
+
+        <p>Public-Key: {value}</p>
+
+        <ul>
+          <p>Balances:</p>
+          {balances.map((item) => (
+            <li key={item.asset_code}>
+              {item.balance} {item.asset_code}
+            </li>
+          ))}
+          <p>When there is no currency behind the balance, its native XLM.</p>
+        </ul>
+
+        <ul>
+          <p>Account was created at:</p>
+          {account.map((item) => (
+            <li key={item.created_at}>{item.created_at}</li>
+          ))}
+        </ul>
+
+        <ul>
+          <p>Account was created by:</p>
+          {account.map((item) => (
+            <li key={item.source_account}>{item.source_account}</li>
+          ))}
+        </ul>
       </div>
     );
   }
