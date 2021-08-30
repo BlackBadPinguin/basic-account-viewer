@@ -23,7 +23,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Libraries that where used
+## License
+This project is licensed under the conditions of the MIT License.
+
+## Libraries 
 [React](https://reactjs.org/)\
 [Albedo](https://albedo.link/playground)\
 [Bootstrap4](https://getbootstrap.com/)\
