@@ -40,6 +40,7 @@ class LogInWithAlbedo extends Component {
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
+              const mute = error;
               this.setState({
                 isLoaded: true,
                 error
@@ -65,6 +66,7 @@ class LogInWithAlbedo extends Component {
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
+              const mute = error;
               this.setState({
                 isLoaded2: true,
                 error
