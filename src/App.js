@@ -53,13 +53,13 @@ class LogInWithAlbedo extends Component {
             pubkey +
             "/payments?cursor=&limit=1&order=asc"
         )
-          .then((res2) => res2.json())
+          .then((res) => res.json())
           .then(
-            (result2) => {
+            (result) => {
               //console.log(result2); --> for debugging
               this.setState({
                 isLoaded2: true,
-                account: result2._embedded.records
+                account: result._embedded.records
               });
             },
             // Note: it's important to handle errors here
